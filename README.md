@@ -1,8 +1,6 @@
-# f23wb93yakkala
+# s23db93yakkala
 
-# WebApps-F23-Assignment-10
-The purpose of this repo is to become familiar with using pug templates to dynamically generate web pages on the server side
+# WebApps-F23-Assignment-11
+The purpose of this assignment is start working with a server side Mongo data base.
 
-Here is the Render [Link](https://f23wb93yakkala.onrender.com)
-
-My class is Muffins with attributes muffin_flavour (string), muffin_quantity (string), and muffin_cost (number)
+Here is the Render [Link](https://s23db93yakkala.onrender.com)
