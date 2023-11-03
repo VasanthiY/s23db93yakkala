@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  -
+    let results = [
+      {
+        "muffin_flavour": "Blueberry",
+        "muffin_quantity": "1lb",
+        "muffin_cost": 30
+      },
+      {
+        "muffin_flavour": "Chocolate Chip",
+        "muffin_quantity": "2lb",
+        "muffin_cost": 40
+      },
+      {
+        "muffin_flavour": "Apple Crumble",
+        "muffin_quantity": "3lb",
+        "muffin_cost": 70
+      },                   
+    ]
+  div(class= "container-fluid")
+    div(class = "row")
+      each item,index in results
+        div(class= "col-sm-2", onclick=`buy(${index})`) Flavor: #{item.muffin_flavour}
+        div(class= "col-sm-2", onclick=`buy(${index})`) Quantity: #{item.muffin_quantity}
+        div(class= "col-sm-2", onclick=`buy(${index})`) Cost: #{item.muffin_cost}
+        br
+        br
+        
+  script.
+    function buy(itemNum){
+      alert(`You purchased item ${itemNum+1}`)
+    }
