@@ -17,8 +17,23 @@ exports.muffin_detail = function(req, res) {
 };
 
 // Handle Muffin create on POST.
-exports.muffin_create_post = function(req, res) {
- res.send('NOT IMPLEMENTED: Muffin create POST');
+exports.muffin_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new Muffin();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"muffin_flavour":"vanilla muffin", "muffin_quantity":1, "muffin_cost":25}
+    document.muffin_flavour = req.body.muffin_flavour;
+    document.muffin_quantity = req.body.muffin_quantity;
+    document.muffin_cost = req.body.muffin_cost;
+    try{
+        let result = await document.save();
+        res.send(result);
+    } catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    } 
 };
 
 // Handle Muffin delete form on DELETE.
