@@ -30,3 +30,15 @@ exports.muffin_delete = function(req, res) {
 exports.muffin_update_put = function(req, res) {
  res.send('NOT IMPLEMENTED: Muffin update PUT' + req.params.id);
 };
+
+// VIEWS
+// Handle a show all view
+exports.muffin_view_all_Page = async function(req, res) {
+    try{
+        theMuffins = await Muffin.find();
+        res.render('muffins', { title: 'Muffin Search Results', results: theMuffins });
+    } catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
