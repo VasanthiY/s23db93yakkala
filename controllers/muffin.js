@@ -1,8 +1,14 @@
 var Muffin = require('../models/muffinSchema');
 
 // List of all Muffins
-exports.muffin_list = function(req, res) {
- res.send('NOT IMPLEMENTED: Muffin list');
+exports.muffin_list = async function(req, res) {
+    try{
+        theMuffins = await Muffin.find();
+        res.send(theMuffins);
+    } catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    } 
 };
 
 // for a specific Muffin.
