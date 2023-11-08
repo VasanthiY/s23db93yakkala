@@ -8,10 +8,7 @@ require('dotenv').config();
 const connectionString = process.env.MONGO_CON
 mongoose = require('mongoose');
 var Muffin = require('./models/muffinSchema');
-mongoose.connect(connectionString, {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-});
+mongoose.connect(connectionString);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
