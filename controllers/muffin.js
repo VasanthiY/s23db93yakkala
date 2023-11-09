@@ -44,8 +44,16 @@ exports.muffin_create_post = async function(req, res) {
 };
 
 // Handle Muffin delete form on DELETE.
-exports.muffin_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: Muffin delete DELETE ' + req.params.id);
+exports.muffin_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+        result = await Muffin.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
 
 // Handle Muffin update form on PUT.
