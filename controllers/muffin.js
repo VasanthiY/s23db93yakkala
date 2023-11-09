@@ -49,8 +49,22 @@ exports.muffin_delete = function(req, res) {
 };
 
 // Handle Muffin update form on PUT.
-exports.muffin_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: Muffin update PUT' + req.params.id);
+exports.muffin_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body 
+    ${JSON.stringify(req.body)}`)
+     try {
+        let toUpdate = await Muffin.findById( req.params.id)
+        // Do updates of properties
+        if(req.body.muffin_flavour) toUpdate.muffin_flavour = req.body.muffin_flavour;
+        if(req.body.muffin_quantity) toUpdate.muffin_quantity = req.body.muffin_quantity;
+        if(req.body.muffin_cost) toUpdate.muffin_cost = req.body.muffin_cost;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+     } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+     }
 };
 
 // VIEWS
