@@ -12,8 +12,15 @@ exports.muffin_list = async function(req, res) {
 };
 
 // for a specific Muffin.
-exports.muffin_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: Muffin detail: ' + req.params.id);
+exports.muffin_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await Muffin.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
 };
 
 // Handle Muffin create on POST.
