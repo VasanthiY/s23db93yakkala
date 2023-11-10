@@ -32,4 +32,7 @@ router.get('/detail', muffin_controller.muffin_view_one_Page)
 /* GET create costume page */
 router.get('/create', muffin_controller.muffin_create_Page)
 
+/* GET create update page */
+router.get('/update', muffin_controller.muffin_update_Page)
+
 module.exports = router;
