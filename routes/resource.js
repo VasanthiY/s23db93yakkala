@@ -29,4 +29,7 @@ router.get('/muffins', muffin_controller.muffin_list);
 /* GET detail muffin page */
 router.get('/detail', muffin_controller.muffin_view_one_Page)
 
+/* GET create costume page */
+router.get('/create', muffin_controller.muffin_create_Page)
+
 module.exports = router;

@@ -1,0 +1,33 @@
+extends layout
+block content
+    h1= title
+    form(id='MuffinForm', action="/resource/muffins", method="POST")
+        div.form-group
+            label.muffinAttr(for='muffin_flavour') Muffin Flavour
+            input#muffin_flavour(type='text', name='muffin_flavour')
+        div.form-group
+            label.muffinAttr(for='muffin_quantity') Muffin Quantity
+            input#muffin_quantity(type='text', name='muffin_quantity')
+        div.form-group
+            label.muffinAttr(for='cost') Muffin cost
+            input#muffin_cost(type='number', name='muffin_cost')
+            br
+            br
+            input(type="submit")
+        script.
+            document.forms['MuffinForm'].addEventListener('submit', (event) => {
+                event.preventDefault();
+                // TODO do something here to show user that form is being submitted
+                fetch(event.target.action, {
+                    method: 'POST', 
+                    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                }).then((resp) => {
+                    return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                    alert("Save succeded")
+                    // TODO handle body
+                }).catch((error) => {
+                    // TODO handle error
+                    alert("Save failed " + error )
+                });
+            });
