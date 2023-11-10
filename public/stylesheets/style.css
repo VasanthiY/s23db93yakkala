@@ -10,4 +10,24 @@ a {
 .muffinAttr {
   background-color: aquamarine;
   width: 120px;
+  border-style:inset;
+  margin: 10px;
+ }
+
+ h1{
+  color: brown;
+}
+
+input{
+  width: 150px;
+  border-style:double;
+  margin: 10px;
+}
+
+ input[type= submit] {
+   background-color: forestgreen;
+   width: 120px;
+   margin: 10px;
+   color: white;
+   border-color: black;
  }

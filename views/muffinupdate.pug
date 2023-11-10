@@ -1,44 +1,49 @@
 extends layout
 block content
     h1= title
-    - let muffinid = toShow._id
-    - let muffin_flavour = toShow.muffin_flavour
-    - let muffin_quantity = toShow.muffin_quantity
-    - let muffin_cost = toShow.muffin_cost
+
+    if (toShow == null)
+        h2 No instance to update
     
-    div.row(class='mb-2')
-        div.mr-1 ID is
-        div #{muffinid}
-    
-    - let actionid = "/resource/muffins/" + muffinid
-    
-    form(id='MuffinForm', action= actionid, method="PUT")
-        div.form-group
-            label.muffinAttr(for='muffin_flavour') Muffin Flavour
-            input#muffin_flavour(type='text', name='muffin_flavour')
-        div.form-group
-            label.muffinAttr(for='muffin_quantity') Muffin Quantity
-            input#muffin_quantity(type='text', name='muffin_quantity')
-        div.form-group
-            label.muffinAttr(for='cost') Muffin cost
-            input#muffin_cost(type='number', name='muffin_cost')
-            br
-            br
-            input(type="submit")
+    else
+        - let muffinid = toShow._id
+        - let muffin_flavour = toShow.muffin_flavour
+        - let muffin_quantity = toShow.muffin_quantity
+        - let muffin_cost = toShow.muffin_cost
         
-        script.
-            document.forms['MuffinForm'].addEventListener('submit', (event) => {
-                event.preventDefault();
-                // TODO do something here to show user that form is being submitted
-                fetch(event.target.action, {
-                    method: 'PUT', body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-                }).then((resp) => {
-                    return resp.json(); // or resp.text() or whatever the server sends
-                }).then((body) => {
-                    alert("Update succeded")
-                    // TODO handle body
-                }).catch((error) => {
-                    // TODO handle error
-                    alert("Update failed " + error )
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{muffinid}
+        
+        - let actionid = "/resource/muffins/" + muffinid
+        
+        form(id='MuffinForm', action= actionid, method="PUT")
+            div.form-group
+                label.muffinAttr(for='muffin_flavour') Muffin Flavour
+                input#muffin_flavour(type='text', name='muffin_flavour')
+            div.form-group
+                label.muffinAttr(for='muffin_quantity') Muffin Quantity
+                input#muffin_quantity(type='text', name='muffin_quantity')
+            div.form-group
+                label.muffinAttr(for='cost') Muffin cost
+                input#muffin_cost(type='number', name='muffin_cost')
+                br
+                br
+                input(type="submit")
+            
+            script.
+                document.forms['MuffinForm'].addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    // TODO do something here to show user that form is being submitted
+                    fetch(event.target.action, {
+                        method: 'PUT', body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                    }).then((resp) => {
+                        return resp.json(); // or resp.text() or whatever the server sends
+                    }).then((body) => {
+                        alert("Update succeded")
+                        // TODO handle body
+                    }).catch((error) => {
+                        // TODO handle error
+                        alert("Update failed " + error )
+                    });
                 });
-            });
