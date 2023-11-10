@@ -1,0 +1,20 @@
+extends layout
+block content
+    h1= title
+    - let muffinid = toShow._id
+    - let muffin_flavour = toShow.muffin_flavour
+    - let muffin_quantity = toShow.muffin_quantity
+    - let muffin_cost = toShow.muffin_cost
+    div
+        div.row
+            div(class='muffinAttr mr-3') Muffin ID is:
+            div #{muffinid}
+        div.row
+            div(class='muffinAttr mr-3') Muffin Flavour is:
+            div #{muffin_flavour}
+        div.row
+            div(class='muffinAttr mr-3') Muffin Quantity is:
+            div #{muffin_quantity}
+        div.row
+            div(class='muffinAttr mr-3') Muffin Cost is:
+            div #{muffin_cost}

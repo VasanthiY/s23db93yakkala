@@ -26,4 +26,7 @@ router.get('/muffins/:id', muffin_controller.muffin_detail);
 // GET request for list of all Muffin items.
 router.get('/muffins', muffin_controller.muffin_list);
 
+/* GET detail muffin page */
+router.get('/detail', muffin_controller.muffin_view_one_Page)
+
 module.exports = router;
