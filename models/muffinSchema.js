@@ -10,8 +10,8 @@ const muffinSchema = mongoose.Schema({
     },
     muffin_cost: {
         type: Number,
-        min: 2,
-        max: 100
+        min: 4,
+        max: 80
     }
 })
 module.exports = mongoose.model("Muffin", muffinSchema)

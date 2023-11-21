@@ -2,15 +2,19 @@ extends layout
 
 block content
   h1= title
+  - let des = `dispatch(\"/resource/create\")`
+  button.btn( class="btn-secondary m-1" onclick= des) Create
   - let items = results
   div(class="container-fluid")
-    div(class="row m-1")
+    div(class="col m-1")
       each item in items
         - let destination = `dispatch(\"/resource/update?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Item #{item.muffin_flavour}(#{item.muffin_quantity}) is #{item.muffin_cost}
+        button.btn( class="btn-primary m-1", onclick= destination) Update
+        button.btn( class="btn-success m-1", onclick= destination1) Details
+        button.btn( class="btn-danger m-1", onclick= destination2) Delete
         br
         br
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
         
   script.
     function dispatch(path){
