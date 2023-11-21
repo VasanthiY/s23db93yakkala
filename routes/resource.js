@@ -6,6 +6,14 @@ var router = express.Router();
 var api_controller = require('../controllers/api');
 var muffin_controller = require('../controllers/muffin');
 
+const secured = (req, res, next) => {
+    if (req.user) {
+        return next();
+    }
+    req.session.returnTo = req.originalUrl;
+    res.redirect("/login");
+}
+
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
@@ -33,7 +41,7 @@ router.get('/detail', muffin_controller.muffin_view_one_Page)
 router.get('/create', muffin_controller.muffin_create_Page)
 
 /* GET create update page */
-router.get('/update', muffin_controller.muffin_update_Page)
+router.get('/update', secured, muffin_controller.muffin_update_Page)
 
 /* GET delete muffin page */
 router.get('/delete', muffin_controller.muffin_delete_Page)
