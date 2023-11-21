@@ -1,24 +1,33 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  button(type="button", class="btn btn-secondary", onclick = "goFaster()") Press Me
-  br
-  br
-  div(id="faster") Increase the speed
-  script.
-    let mph = 20;
-    let change = 1;
+  //- h1= title
+  //- p Welcome to #{title}
+  //- button(type="button", class="btn btn-secondary", onclick = "goFaster()") Press Me
+  //- br
+  //- br
+  //- div(id="faster") Increase the speed
+  //- script.
+  //-   let mph = 20;
+  //-   let change = 1;
 
-    function goFaster(){
-      mph += change;
-      change++;
+  //-   function goFaster(){
+  //-     mph += change;
+  //-     change++;
 
-      let result = document.getElementById("faster");
+  //-     let result = document.getElementById("faster");
 
-      result.innerHTML = "MPH " + mph + " with change" + change;
-    }
-  br
-  br
-  a(href="muffins") Click here for Muffins Search
+  //-     result.innerHTML = "MPH " + mph + " with change" + change;
+  //-   }
+  //- br
+  //- br
+  //- a(href="muffins") Click here for Muffins Search
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/muffins") Take me to muffins
+    br
+    a(href="/logout") Logout
