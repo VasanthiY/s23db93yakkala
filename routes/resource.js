@@ -38,12 +38,12 @@ router.get('/muffins', muffin_controller.muffin_list);
 router.get('/detail', muffin_controller.muffin_view_one_Page)
 
 /* GET create muffin page */
-router.get('/create', muffin_controller.muffin_create_Page)
+router.get('/create', secured, muffin_controller.muffin_create_Page)
 
 /* GET create update page */
 router.get('/update', secured, muffin_controller.muffin_update_Page)
 
 /* GET delete muffin page */
-router.get('/delete', muffin_controller.muffin_delete_Page)
+router.get('/delete', secured, muffin_controller.muffin_delete_Page)
 
 module.exports = router;
